@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BaseGridService } from './base-grid.service';
 
 export interface WireworldCell {
   state: 'EMPTY' | 'ELECTRON_HEAD' | 'ELECTRON_TAIL' | 'CONDUCTOR';
@@ -8,28 +8,14 @@ export interface WireworldCell {
 @Injectable({
   providedIn: 'root'
 })
-export class WireworldService {
-  private gridSize: number = 40;
-  private gridSubject: BehaviorSubject<WireworldCell[][]>;
-  grid$: any;
+export class WireworldService extends BaseGridService<WireworldCell> {
 
   constructor() {
-    const initialGrid: WireworldCell[][] = Array.from({ length: this.gridSize }, () =>
-        Array.from({ length: this.gridSize }, () => ({ state: 'EMPTY' }))
-      );
-    this.gridSubject = new BehaviorSubject<WireworldCell[][]>(initialGrid);
-    this.grid$ = this.gridSubject.asObservable();
-  }
-
-  initializeGrid(): void {
-    const newGrid: WireworldCell[][] = Array.from({ length: this.gridSize }, () =>
-      Array.from({ length: this.gridSize }, () => ({ state: 'EMPTY' }))
-    );
-      this.gridSubject.next(newGrid);
+    super('EMPTY'); 
   }
 
   toggleCellState(x: number, y: number): void {
-    const grid = this.gridSubject.value;
+    const grid = this.getGrid();
     const cell = grid[x][y];
 
     switch (cell.state) {
@@ -51,7 +37,7 @@ export class WireworldService {
   }
 
   nextGeneration(): void {
-    const grid: WireworldCell[][] = this.gridSubject.value.map((row, x) =>
+    const newGrid: WireworldCell[][] = this.getGrid().map((row, x) =>
       row.map((cell, y) => {
         switch (cell.state) {
           case 'ELECTRON_HEAD':
@@ -59,7 +45,7 @@ export class WireworldService {
           case 'ELECTRON_TAIL':
             return { state: 'CONDUCTOR' };
           case 'CONDUCTOR':
-            const headCount = this.countElectronHeadNeighbors(x, y);
+            const headCount = this.countNeighbors(x, y, (c) => c.state === 'ELECTRON_HEAD');
             return { state: headCount === 1 || headCount === 2 ? 'ELECTRON_HEAD' : 'CONDUCTOR' };
           default:
             return { state: 'EMPTY' };
@@ -67,25 +53,6 @@ export class WireworldService {
       })
     );
 
-    this.gridSubject.next(grid);
-  }
-
-  private countElectronHeadNeighbors(x: number, y: number): number {
-    const directions = [
-      [-1, -1], [-1, 0], [-1, 1],
-      [0, -1], [0, 1],
-      [1, -1], [1, 0], [1, 1]
-    ];
-
-    return directions.reduce((count, [dx, dy]) => {
-      const nx = x + dx;
-      const ny = y + dy;
-      if (nx >= 0 && ny >= 0 && nx < this.gridSize && ny < this.gridSize) {
-        if (this.gridSubject.value[nx][ny].state === 'ELECTRON_HEAD') {
-          count++;
-        }
-      }
-      return count;
-    }, 0);
+    this.gridSubject.next(newGrid);
   }
 }

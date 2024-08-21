@@ -1,3 +1,3 @@
 export interface Cell {
-    isAlive: boolean;
+state: boolean;
   }

@@ -2,7 +2,7 @@
      (mouseup)="onMouseUp()">
   <div *ngFor="let row of grid; let x = index" class="row">
     <div *ngFor="let cell of row; let y = index"
-         [ngClass]="{'alive': cell.isAlive}"
+         [ngClass]="{'alive': cell.state}"
          (mousedown)="onMouseDown(x, y)"
          (mouseenter)="onMouseEnter(x, y)"
          class="cell">

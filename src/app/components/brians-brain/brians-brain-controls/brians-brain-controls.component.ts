@@ -29,6 +29,6 @@ export class BriansBrainControlsComponent {
 
   resetGame(): void {
     this.stopGame();
-    this.briansBrainService.initializeGrid();
+    this.briansBrainService.initializeGrid("OFF");
   }
 }

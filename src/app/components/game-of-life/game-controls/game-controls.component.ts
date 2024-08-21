@@ -29,6 +29,6 @@ export class GameControlsComponent {
 
   resetGame(): void {
     this.stopGame();
-    this.gameService.initializeGrid();
+    this.gameService.initializeGrid(true);
   }
 }

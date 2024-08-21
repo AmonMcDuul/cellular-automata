@@ -27,6 +27,6 @@ export class WireworldControlsComponent {
 
   resetSimulation(): void {
     this.stopSimulation();
-    this.wireworldService.initializeGrid();
+    this.wireworldService.initializeGrid("EMPTY");
   }
 }
