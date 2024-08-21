@@ -23,5 +23,12 @@
 }
 
 .cell.alive {
-  background-color: rgb(0, 255, 26); 
+  background-color: rgb(255, 0, 234); 
+}
+
+@media (max-width: 600px) {
+  .cell{
+    width: 10px; 
+    height: 10px;
+  }
 }

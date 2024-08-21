@@ -42,3 +42,9 @@
     opacity: 0.7;
   }
   
+  @media (max-width: 600px) {
+    .cell{
+      width: 10px; 
+      height: 10px;
+    }
+  }
