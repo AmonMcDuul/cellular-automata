@@ -1,19 +1,31 @@
 <div class="dashboard">
-  <div class="dashboard-header">
-    <h1>Cellular Automata</h1>
-  </div>
-  <div class="dashboard-main">
-    <div class="navbar">
-        <h2 (click)="setGameOfLife()">Game of Life</h2>
+    <div class="dashboard-header">
+      <h1>Cellular Automata</h1>
     </div>
-    <div>
+    <div class="dashboard-main">
+      <div class="navbar">
+        <ul>
+          <h2 (click)="setGameOfLife()">Game of Life</h2>
+          <h2 (click)="setBriansBrain()">Brian's Brain</h2>
+          <h2 (click)="setWireworld()">Wireworld</h2>
+        </ul>
+      </div>
+      <div>
         <div class="dashboard-game">
-            @if(gameOfLife){
-                <app-game-controls></app-game-controls>
-                <app-game-board></app-game-board>
-            }
+          <ng-container *ngIf="gameOfLife">
+            <app-game-controls></app-game-controls>
+            <app-game-board></app-game-board>
+          </ng-container>
+          <ng-container *ngIf="briansBrain">
+            <app-brians-brain-controls></app-brians-brain-controls>
+            <app-brians-brain-board></app-brians-brain-board>
+          </ng-container>
+          <ng-container *ngIf="wireworld">
+            <app-wireworld-controls></app-wireworld-controls>
+            <app-wireworld-board></app-wireworld-board>
+          </ng-container>
         </div>
+      </div>
     </div>
-    </div>
-</div>
-
+  </div>
+  

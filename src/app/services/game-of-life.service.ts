@@ -1,4 +1,3 @@
-// src/app/services/game.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Cell } from '../models/cell.model';
@@ -45,7 +44,6 @@ export class GameOfLifeService {
         return { isAlive: isAlive ? aliveNeighbors === 2 || aliveNeighbors === 3 : aliveNeighbors === 3 };
       })
     );
-    console.log('New Generation:', newGrid); 
     this.gridSubject.next(newGrid); 
   }
   

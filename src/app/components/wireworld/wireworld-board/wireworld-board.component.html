@@ -1,0 +1,16 @@
+<div class="grid" (mouseup)="onMouseUp()">
+    <div *ngFor="let row of grid; let x = index" class="row">
+      <div *ngFor="let cell of row; let y = index"
+           [ngClass]="{
+             'empty': cell.state === 'EMPTY',
+             'electron-head': cell.state === 'ELECTRON_HEAD',
+             'electron-tail': cell.state === 'ELECTRON_TAIL',
+             'conductor': cell.state === 'CONDUCTOR'
+           }"
+           (mousedown)="onMouseDown(x, y)"
+           (mouseenter)="onMouseEnter(x, y)"
+           class="cell">
+      </div>
+    </div>
+  </div>
+  
