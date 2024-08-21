@@ -30,6 +30,12 @@
   .navbar h2:hover {
     color: #067493;
   }
+
+  .selected {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 36px;
+  }
   
   .dashboard-game {
     display: flex;

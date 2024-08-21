@@ -23,7 +23,7 @@ import { WireworldBoardComponent } from "../wireworld/wireworld-board/wireworld-
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  gameOfLife: boolean = false;
+  gameOfLife: boolean = true;
   briansBrain: boolean = false;
   wireworld: boolean = false;
 

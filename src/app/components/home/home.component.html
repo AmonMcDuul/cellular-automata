@@ -5,9 +5,9 @@
     <div class="dashboard-main">
       <div class="navbar">
         <ul>
-          <h2 (click)="setGameOfLife()">Game of Life</h2>
-          <h2 (click)="setBriansBrain()">Brian's Brain</h2>
-          <h2 (click)="setWireworld()">Wireworld</h2>
+          <h2 [ngClass]="{'selected': gameOfLife}" (click)="setGameOfLife()">Game of Life</h2>
+          <h2 [ngClass]="{'selected': briansBrain}" (click)="setBriansBrain()">Brian's Brain</h2>
+          <h2 [ngClass]="{'selected': wireworld}" (click)="setWireworld()">Wireworld</h2>
         </ul>
       </div>
       <div>
