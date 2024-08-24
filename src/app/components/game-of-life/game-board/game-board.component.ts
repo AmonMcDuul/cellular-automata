@@ -16,7 +16,7 @@ export class GameBoardComponent implements OnInit {
   grid: Cell[][] = [];
   private gridSubscription!: Subscription;
   private isMouseDown: boolean = false; 
-
+  
   constructor(private gameService: GameOfLifeService) {}
 
   ngOnInit(): void {

@@ -12,21 +12,25 @@ export class WireworldControlsComponent {
 
   constructor(private wireworldService: WireworldService) {}
 
-  startSimulation(): void {
-    this.stopSimulation();
+  startGame(): void {
+    this.stopGame();
     this.intervalId = setInterval(() => {
       this.wireworldService.nextGeneration();
     }, 200);
   }
 
-  stopSimulation(): void {
+  stopGame(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
   }
 
-  resetSimulation(): void {
-    this.stopSimulation();
+  resetGame(): void {
+    this.stopGame();
     this.wireworldService.initializeGrid("EMPTY");
+  }
+    
+  ngOnDestroy(): void {
+    this.resetGame();
   }
 }

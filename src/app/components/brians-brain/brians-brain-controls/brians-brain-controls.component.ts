@@ -31,4 +31,8 @@ export class BriansBrainControlsComponent {
     this.stopGame();
     this.briansBrainService.initializeGrid("OFF");
   }
+    
+  ngOnDestroy(): void {
+    this.resetGame();
+  }
 }

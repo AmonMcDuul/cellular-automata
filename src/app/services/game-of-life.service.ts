@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseGridService } from './base-grid.service';
+import { Subject } from 'rxjs';
 
 export interface Cell {
   state: boolean;
@@ -9,6 +10,7 @@ export interface Cell {
   providedIn: 'root'
 })
 export class GameOfLifeService extends BaseGridService<Cell> {
+  private unsubscribe$ = new Subject<void>();
 
   constructor() {
     super(false);
@@ -16,7 +18,6 @@ export class GameOfLifeService extends BaseGridService<Cell> {
 
   toggleCellState(x: number, y: number): void {
     const grid = this.getGrid();
-    console.log(grid[x][y].state)
     grid[x][y].state = !grid[x][y].state;
     this.gridSubject.next(grid);
   }

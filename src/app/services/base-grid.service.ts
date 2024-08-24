@@ -9,7 +9,7 @@ export interface Cell {
   providedIn: 'root'
 })
 export abstract class BaseGridService<T extends Cell> {
-  protected gridSize: number = 40;
+  protected gridSize: number = 33;
   protected gridSubject: BehaviorSubject<T[][]>;
   grid$: any;
 

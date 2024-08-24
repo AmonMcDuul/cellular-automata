@@ -6,6 +6,8 @@ import { BriansBrainControlsComponent } from '../brians-brain/brians-brain-contr
 import { CommonModule } from '@angular/common';
 import { WireworldControlsComponent } from "../wireworld/wireworld-controls/wireworld-controls.component";
 import { WireworldBoardComponent } from "../wireworld/wireworld-board/wireworld-board.component";
+import { BaseGridService, Cell } from '../../services/base-grid.service';
+import { BriansBrainService } from '../../services/brians-brain.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,7 @@ import { WireworldBoardComponent } from "../wireworld/wireworld-board/wireworld-
     BriansBrainBoardComponent,
     BriansBrainControlsComponent,
     WireworldControlsComponent,
-    WireworldBoardComponent
+    WireworldBoardComponent,
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -26,6 +28,10 @@ export class HomeComponent {
   gameOfLife: boolean = true;
   briansBrain: boolean = false;
   wireworld: boolean = false;
+
+  constructor(){
+
+  }
 
   setGameOfLife() {
     this.gameOfLife = true;
@@ -43,5 +49,11 @@ export class HomeComponent {
     this.gameOfLife = false;
     this.briansBrain = false;
     this.wireworld = true;
+  }
+
+  setLangtonsAnt(){
+    this.gameOfLife = false;
+    this.briansBrain = false;
+    this.wireworld = false;
   }
 }

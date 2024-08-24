@@ -29,6 +29,10 @@ export class GameControlsComponent {
 
   resetGame(): void {
     this.stopGame();
-    this.gameService.initializeGrid(true);
+    this.gameService.initializeGrid(false);
+  }
+  
+  ngOnDestroy(): void {
+    this.resetGame();
   }
 }
